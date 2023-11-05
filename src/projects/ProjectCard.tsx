@@ -2,9 +2,14 @@ import { Project } from "./Project"
 
 type ProjectCardProps = {
     project: Project;
+    onEdit: (project: Project) => void;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, onEdit }: ProjectCardProps) {
+  const handleEditClick = (projectBeingEdited: Project) => {
+    onEdit(projectBeingEdited);
+  }
+
   return (
     <div className="card">
       <img src={project.imageUrl} alt={project.name} />
@@ -14,6 +19,10 @@ function ProjectCard({ project }: ProjectCardProps) {
         </h5>
         <p>{project.description}</p>
         <p>Budget : {project.budget.toLocaleString()}</p>
+        <button onClick={() => handleEditClick(project)} className=" bordered">
+          <span className="icon-edit "></span>
+             Edit
+        </button>
       </section>
     </div>
   )
