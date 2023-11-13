@@ -44,10 +44,12 @@ function ProjectForm({ onCancel, onSave, project: initialProject }: ProjectFormP
     }
 
     let updatedProject: Project;
+
     setProject((p) => {
         updatedProject = new Project({ ...p, ...change });
         return updatedProject;
-    })
+    });
+
     setErrors(() => validate(updatedProject));
   }
 
